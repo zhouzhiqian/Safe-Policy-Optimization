@@ -42,7 +42,7 @@ class P3O(PG):
         surr_adv = (torch.min(ratio * data['adv'], ratio_clip * data['adv'])).mean()
         surr_cadv = (ratio * data['cost_adv']).mean()
         ep_costs = self.logger.get_stats('EpCosts')[0]
-        c = ep_costs - self.cost_limit
+        c = (1 - self.gamma) * (ep_costs - self.cost_limit)
         loss_pi = -surr_adv + self.kappa * F.relu(surr_cadv + c)
         loss_pi = loss_pi.mean()
 

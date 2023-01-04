@@ -6,3 +6,5 @@ __pycache__/
 .vscode
 safepo/run.sh
 safepo/bash_run
+runs/*
+.idea/*
